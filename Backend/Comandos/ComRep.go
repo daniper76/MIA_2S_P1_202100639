@@ -67,7 +67,6 @@ func Rep(commandArray []string) {
 					var aux *Mount.Nodo = Mount.Obtener_nodo(val_id, lista_montajes)
 
 					if aux != nil {
-						// Reportes validos
 						if val_name == "disk" {
 							Graficar.Graficar_disk(aux.Direccion, val_path)
 						} else {

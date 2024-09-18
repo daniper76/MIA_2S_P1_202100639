@@ -2,6 +2,7 @@ package Comandos
 
 import (
 	"Backend/Analizador"
+	"Backend/Auxiliares"
 	"io"
 	"math/rand"
 	"os"
@@ -109,7 +110,7 @@ func Mkdisk(commandArray []string) {
 			if band_size {
 				total_size := 1024
 				master_boot_record := MBR{}
-				crear_disco(val_path)
+				Auxiliares.Crear_disco(val_path)
 				fecha := time.Now()
 				str_fecha := fecha.Format("02/01/2006 15:04:05")
 				copy(master_boot_record.Mbr_fecha_creacion[:], str_fecha)
@@ -148,22 +149,22 @@ func Mkdisk(commandArray []string) {
 				cmd.Dir = "/"
 				_, err := cmd.Output()
 				if err != nil {
-					salida_comando += "[ERROR] Al ejecuatar comando en consola\\n"
+					Analizador.Salida_comando += "[ERROR] Al ejecuatar comando en consola\\n"
 				}
 				f, err := os.OpenFile(val_path, os.O_RDWR, 0660)
 				if err != nil {
-					salida_comando += "[ERROR] Al abrir el archivo\\n"
+					Analizador.Salida_comando += "[ERROR] Al abrir el archivo\\n"
 				} else {
 					mbr_byte := struct_a_bytes(master_boot_record)
 					f.Seek(0, io.SeekStart)
 					f.Write(mbr_byte)
 					f.Close()
 
-					salida_comando += "[Exito] El disco fue creado con exito!\\n"
+					Analizador.Salida_comando += "[Exito] El disco fue creado con exito!\\n"
 				}
 			}
 		}
 	}
 
-	salida_comando += "[MENSAJE] El comando MKDISK aqui finaliza\\n"
+	Analizador.Salida_comando += "[MENSAJE] El comando MKDISK aqui finaliza\\n"
 }

@@ -48,15 +48,15 @@ func Rmdisk(commandArray []string) {
 				if err != nil {
 					Analizador.Salida_comando += "[ERROR] Al ejecutar un comando en consola\\n"
 				} else {
-					salida_comando += "[SUCCES] El Disco fue eliminado!\\n"
+					Analizador.Salida_comando += "[SUCCES] El Disco fue eliminado!\\n"
 				}
 
 				band_path = false
 			}
 		} else {
-			salida_comando += "[ERROR] el parametro -path no fue ingresado...\\n"
+			Analizador.Salida_comando += "[ERROR] el parametro -path no fue ingresado...\\n"
 		}
 	}
 
-	salida_comando += "[MENSAJE] El comando RMDISK aqui finaliza\\n"
+	Analizador.Salida_comando += "[MENSAJE] El comando RMDISK aqui finaliza\\n"
 }
